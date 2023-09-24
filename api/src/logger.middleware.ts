@@ -12,15 +12,15 @@ export class LoggerMiddleware implements NestMiddleware {
     if (req.route.methods.post && !this.validateBody(req.body))
       return res.status(422).end();
 
-    if (typeof req.body.stack !== "string" && !Array.isArray(req.body.stack)) {
-      req.body.stack = [];
-    }
+    // if (typeof req.body.stack !== "string" && !Array.isArray(req.body.stack)) {
+    //   req.body.stack = [];
+    // }
 
-    if (Array.isArray(req.body.stack) && req.body.stack.length) {
-      req.body.stack = req.body.stack.filter(
-        (s: any) => typeof s !== "string" || s === "" || s.length > 32
-      );
-    }
+    // if (Array.isArray(req.body.stack) && req.body.stack.length) {
+    //   req.body.stack = req.body.stack.filter(
+    //     (s: any) => typeof s !== "string" || s === "" || s.length > 32
+    //   );
+    // }
     next();
   }
 

@@ -4,26 +4,25 @@ import { LoggerMiddleware } from "./logger.middleware";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Pessoa } from "./entities/pessoas";
 
-const { DB_URL } = process.env
+const { DB_URL } = process.env;
 
 @Module({
   imports: [
-     TypeOrmModule.forRoot({
-       type: 'postgres',
-       url: DB_URL || "postgres://postgres:12345678@localhost:5432/postgres",
+    TypeOrmModule.forRoot({
+      type: "postgres",
+      url: DB_URL || "postgres://postgres:12345678@localhost:5432/postgres",
       schema: "public",
-      entities: ['../**/entities/*.js'],
+      entities: ["../**/entities/*.js"],
       synchronize: false,
-     }),
-    TypeOrmModule.forFeature([Pessoa])
+      poolSize: 4,
+    }),
+    TypeOrmModule.forFeature([Pessoa]),
   ],
   controllers: [AppController],
   providers: [],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggerMiddleware)
-      .forRoutes(AppController);
+    consumer.apply(LoggerMiddleware).forRoutes(AppController);
   }
 }
