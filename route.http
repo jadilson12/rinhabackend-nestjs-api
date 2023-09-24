@@ -1,0 +1,27 @@
+###
+
+# @name get-by-id-pessoas
+GET http://localhost:8080/pessoas/e4d784e1-2497-4452-95e8-217fc9ddcb91
+
+
+###
+
+# @name criar pessoas
+POST  http://localhost:8080/pessoas
+Content-Type: application/json
+
+{
+  "apelido": "silvasds",
+  "nome": "joao",
+  "nascimento": "2001-01-02",
+  "stack": [
+    "java",
+    "python"
+  ]
+}
+
+###
+
+# @name listar-pessoas-por-nome
+GET http://localhost:8080/pessoas?t=joao
+
