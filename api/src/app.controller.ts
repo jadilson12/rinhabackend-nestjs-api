@@ -39,7 +39,7 @@ export class AppController {
         .execute();
       return res.status(201).location(`/pessoas/${id}`).end();
     } catch (error) {
-      Logger.debug(error.message, "AppController: Error");
+      // Logger.debug(error.message, "AppController: Error");
       return res.status(422).end();
     }
   }
