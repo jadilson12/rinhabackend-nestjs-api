@@ -36,7 +36,6 @@ services:
       HTTP_PORT: 8081
       CLUSTER: true
       CLUSTER_WORKERS: 4
-  
 
   # mongo:
   #   image: mongo

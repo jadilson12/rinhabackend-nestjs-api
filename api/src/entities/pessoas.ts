@@ -1,21 +1,20 @@
 import { Entity, Column } from "typeorm";
 
-
 @Entity({ name: "pessoas" })
 export class Pessoa {
   @Column({ primary: true })
   id: string;
-  
-   @Column()
+
+  @Column()
   apelido: string;
 
-   @Column()
+  @Column()
   nome: string;
 
-   @Column()
+  @Column()
   nascimento: Date;
 
-  @Column({ type: "json"})
+  @Column({ type: "json" })
   stack: string;
 
   @Column()
