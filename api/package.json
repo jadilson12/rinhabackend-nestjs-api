@@ -1,5 +1,5 @@
 {
-  "name": "rinha-be-2023-q3",
+  "name": "rinhabackend-nestjs-api",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -9,7 +9,8 @@
     "build": "nest build",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main"
+    "start:prod": "node dist/main",
+    "test": "npx autocannon -c 50 -d 30 --workers 5 --renderStatusCodes --latency --warmup [ -c 1 -d 2 ] localhost:8080/contagem-pessoas"
   },
   "dependencies": {
     "@mikro-orm/core": "^5.8.2",

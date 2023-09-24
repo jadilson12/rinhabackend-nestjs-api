@@ -77,7 +77,12 @@ export class AppController {
   }
 
   @Get("contagem-pessoas")
-  getContagem() {
-    return this.orm.count();
+  async getContagem(): Promise<any> {
+    try {
+      return await this.orm.count();
+    } catch (err) {
+      Logger.debug(err.message, "AppController: Error");
+      return null;
+    }
   }
 }

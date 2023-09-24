@@ -15,9 +15,12 @@ Content-Type: application/json
 ###
 
 # @name get-by-id-pessoas
-GET http://localhost:8080/pessoas/e4d784e1-2497-4452-95e8-217fc9ddcb91
+GET http://localhost:8080/pessoas/6d2c373d-8629-4a23-8eff-9180a1a856e6
 
 ###
 # @name listar-pessoas-por-nome
 GET http://localhost:8080/pessoas?t=joao
 
+###
+# @name contagem-pessoas-por-nome
+GET http://localhost:8080/contagem-pessoas

@@ -1,22 +1,28 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const cluster = require("node:cluster");
 
-import { Injectable } from "@nestjs/common";
+import { Injectable, Logger } from "@nestjs/common";
 
 @Injectable()
-export class AppClusterService {
-  static clusterize(callback: Function): void {
+export default class AppClusterService {
+  static clusterize(callback: () => void): void {
+    const { CLUSTER_WORKERS } = process.env;
     if (cluster.isMaster) {
-      console.log(`Master server started on ${process.pid}`);
-      for (let i = 0; i < 4; i++) {
+      Logger.log(
+        `Master server started on ${process.pid}`,
+        "AppClusterService"
+      );
+      for (let i = 0; i < Number(CLUSTER_WORKERS || 4); i++) {
         cluster.fork();
       }
-      cluster.on("exit", (worker) => {
-        console.log(`Worker ${worker.process.pid} died. Restarting`);
+      cluster.on("exit", (worker: any) => {
+        Logger.log(
+          `Worker ${worker.process.pid} died... scheduling another one!`,
+          "AppClusterService"
+        );
         cluster.fork();
       });
     } else {
-      console.log(`Cluster server started on ${process.pid}`);
       callback();
     }
   }

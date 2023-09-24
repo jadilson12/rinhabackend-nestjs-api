@@ -4,7 +4,7 @@ import { LoggerMiddleware } from "./logger.middleware";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Pessoa } from "./entities/pessoas";
 
-const { DB_URL } = process.env;
+const { DB_URL, DB_POOL } = process.env;
 
 @Module({
   imports: [
@@ -13,8 +13,8 @@ const { DB_URL } = process.env;
       url: DB_URL || "postgres://postgres:12345678@localhost:5432/postgres",
       schema: "public",
       entities: ["../**/entities/*.js"],
+      poolSize: 125,
       synchronize: false,
-      poolSize: 4,
     }),
     TypeOrmModule.forFeature([Pessoa]),
   ],
